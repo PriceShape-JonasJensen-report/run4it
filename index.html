@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assortment Analysis & Revenue Optimization Report</title>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e5e7eb;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #84869a;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f9fbfc;
+            color: #84869a;
+            padding: 2rem;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .table-container th, .table-container td {
+            padding: 12px 16px;
+        }
+
+        .table-container th {
+            font-weight: 600;
+            color: #f9fbfc;
+            background-color: #20274d;
+            border-bottom: 2px solid #374151;
+        }
+        
+        /* Stripes for table rows */
+        .table-container tr:nth-child(even) {
+            background-color: #e5e7eb;
+        }
+
+        .table-container tr:hover {
+            background-color: #d1d5db;
+        }
+
+        .chart-label {
+            font-size: 0.875rem;
+            color: #20274d;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive bar container for charts */
+        .bar-chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .bar-name {
+            width: 120px;
+            min-width: 120px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .bar-wrapper {
+            flex-grow: 1;
+            height: 1.5rem;
+            background-color: #e5e7eb;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar {
+            height: 100%;
+            background-color: #3b82f6; /* Blue for margin capture */
+            transition: width 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.5rem;
+        }
+        
+        .bar-value {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #f9fbfc;
+        }
+        
+        /* Color scale for opportunity bars */
+        .color-A { background-color: #10b981; } /* Green for high opportunity */
+        .color-B { background-color: #3b82f6; } /* Blue for medium opportunity */
+        .color-C { background-color: #f59e0b; } /* Orange for lower opportunity */
+
+    </style>
+</head>
+<body class="bg-[#f9fbfc] text-[#84869a] p-8">
+    <div class="mx-auto w-full max-w-5xl bg-[#f0f2f5] rounded-2xl shadow-2xl transform transition-transform duration-500 hover:scale-[1.01]">
+        <!-- Header Section -->
+        <div class="bg-[#20274d] p-6 md:p-8 text-white">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">Assortment Analysis & Revenue Optimization Report / run4it</h1>
+            <p class="mt-2 text-[#f9fbfc] text-sm sm:text-base">
+                Generated: 26-11-2025
+            </p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="p-6 md:p-8 space-y-12">
+            
+            <!-- Executive Summary & Key Findings -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-semibold text-[#20274d]">Executive Summary & Key Findings</h2>
+                <div class="bg-white rounded-xl p-6 space-y-4 shadow-md">
+                    <p class="text-sm text-[#84869a] border-b pb-4 border-gray-100">
+                        Your analysis reveals significant revenue optimization opportunities by implementing strategic pricing against your main competitors (runningxpert.com, startfitness.co.uk, derbyrunner.com, runningbear.co.uk). Currently, you are leaving 
+                        <span class="text-red-600 font-bold">£29,674.59</span> in monthly revenue on the table by being significantly cheaper than necessary—representing a 
+                        <span class="text-green-600 font-bold">12.7% revenue increase potential</span> from optimized pricing alone.
+                    </p>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-[#84869a]">
+                        <li><span class="font-semibold text-[#20274d]">2,197 products</span> are underpriced by more than 1% against competitors.</li>
+                        <li>Average discount given unnecessarily: <span class="font-semibold text-red-600">12.4%</span> (when just 1% cheaper is sufficient).</li>
+                        <li>Annual revenue potential from pricing optimization: <span class="font-semibold text-green-600">£356,095</span>.</li>
+                        <li><span class="font-semibold text-[#20274d]">Running Shoes</span> category represents <span class="font-semibold text-green-600">87%</span> of the overall opportunity.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Revenue Opportunity Charts -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-semibold text-[#20274d]">Revenue Optimization Visuals (Monthly £)</h2>
+                
+                <!-- Chart 1: Revenue opportunity by competitor -->
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="font-bold text-lg text-[#20274d] mb-4">Opportunity by Competitor (Monthly Revenue £K)</h3>
+                    <div class="bar-chart-container">
+                        <div class="bar-item">
+                            <span class="bar-name">runningbear...</span>
+                            <div class="bar-wrapper">
+                                <!-- Target: ~14K (47% of total ~30K) -->
+                                <div class="bar color-A" style="width: 47%;">
+                                    <span class="bar-value">£14K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-name">startfitness...</span>
+                            <div class="bar-wrapper">
+                                <!-- Target: ~11K (37% of total ~30K) -->
+                                <div class="bar color-B" style="width: 37%;">
+                                    <span class="bar-value">£11K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-name">runningxpert...</span>
+                            <div class="bar-wrapper">
+                                <!-- Target: ~4.5K (15% of total ~30K) -->
+                                <div class="bar color-C" style="width: 15%;">
+                                    <span class="bar-value">£4.5K</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Top revenue opportunities by brand -->
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="font-bold text-lg text-[#20274d] mb-4">Top Revenue Opportunities by Brand (Monthly £K)</h3>
+                    <div class="bar-chart-container">
+                        <!-- Max opportunity is Brooks at ~£4.2K. Scaling relative to Brooks. -->
+                        <div class="bar-item">
+                            <span class="bar-name">Brooks</span>
+                            <div class="bar-wrapper">
+                                <div class="bar color-A" style="width: 100%;">
+                                    <span class="bar-value">£4.2K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-name">New Balance</span>
+                            <div class="bar-wrapper">
+                                <!-- ~4.0K / 4.2K = 95% -->
+                                <div class="bar color-A" style="width: 95%;">
+                                    <span class="bar-value">£4.0K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-name">Asics</span>
+                            <div class="bar-wrapper">
+                                <!-- ~2.5K / 4.2K = 60% -->
+                                <div class="bar color-B" style="width: 60%;">
+                                    <span class="bar-value">£2.5K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-name">Saucony</span>
+                            <div class="bar-wrapper">
+                                <!-- ~1.5K / 4.2K = 36% -->
+                                <div class="bar color-C" style="width: 36%;">
+                                    <span class="bar-value">£1.5K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-name">Nike</span>
+                            <div class="bar-wrapper">
+                                <!-- ~1.0K / 4.2K = 24% -->
+                                <div class="bar color-C" style="width: 24%;">
+                                    <span class="bar-value">£1.0K</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitive Position Analysis Table -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-semibold text-[#20274d]">Competitive Position Analysis (Underpricing)</h2>
+                <div class="bg-white rounded-xl p-6 space-y-4 shadow-md">
+                    <p class="text-sm text-[#84869a]">
+                        Analysis focuses on products where our current price is more than 1% lower than the competitor's price, unnecessarily eroding margin.
+                    </p>
+                    <div class="table-container">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="bg-[#20274d] text-[#f9fbfc]">
+                                    <th class="py-3 px-4">Competitor</th>
+                                    <th class="py-3 px-4">Total Products Matched</th>
+                                    <th class="py-3 px-4">Significantly Underpriced</th>
+                                    <th class="py-3 px-4">Underpriced %</th>
+                                    <th class="py-3 px-4">Avg Discount Given</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-[#20274d]">
+                                    <td class="py-3 px-4">runningbear.co.uk</td>
+                                    <td class="py-3 px-4">1,351</td>
+                                    <td class="py-3 px-4 text-green-700 font-medium">710</td>
+                                    <td class="py-3 px-4">52.5%</td>
+                                    <td class="py-3 px-4 font-bold text-red-600">16.6%</td>
+                                </tr>
+                                <tr class="border-b border-[#20274d]">
+                                    <td class="py-3 px-4">startfitness.co.uk</td>
+                                    <td class="py-3 px-4">1,749</td>
+                                    <td class="py-3 px-4 text-green-700 font-medium">1,004</td>
+                                    <td class="py-3 px-4">57.4%</td>
+                                    <td class="py-3 px-4 font-bold text-red-600">9.5%</td>
+                                </tr>
+                                <tr class="border-b border-[#20274d]">
+                                    <td class="py-3 px-4">runningxpert.com</td>
+                                    <td class="py-3 px-4">1,767</td>
+                                    <td class="py-3 px-4 text-green-700 font-medium">483</td>
+                                    <td class="py-3 px-4">27.3%</td>
+                                    <td class="py-3 px-4 font-bold text-red-600">10.2%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Strategic Action Plan -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-semibold text-[#20274d]">Strategic Action Plan</h2>
+                
+                <!-- Short Term -->
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="font-bold text-xl text-[#20274d] mb-4 border-b pb-2">SHORT TERM (0-3 months): Quick Wins - £15,000+ monthly</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-[#84869a]">
+                        <li><span class="font-semibold text-green-600">Immediate Action:</span> Focus on **Running Shoes** (87% of opportunity, £25,779 monthly potential).</li>
+                        <li>Implement a <span class="font-semibold text-[#20274d]">1% cheaper pricing strategy</span> vs. the lowest competitor to capture margin.</li>
+                        <li>Prioritize high-impact brands: **Brooks** (£4,198 monthly) and **New Balance** (£3,952 monthly).</li>
+                        <li>Target categories with high average discounts: Bras (37.5%), Headphones (17.6%).</li>
+                    </ul>
+                </div>
+                
+                <!-- Medium Term -->
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="font-bold text-xl text-[#20274d] mb-4 border-b pb-2">MEDIUM TERM (3-6 months): Strategic Positioning - £25,000+ monthly</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-[#84869a]">
+                        <li><span class="font-semibold text-green-600">Dynamic Pricing:</span> Implement automated competitor monitoring for top 500 products.</li>
+                        <li>Conduct A/B testing on price sensitivity to confirm optimal margin capture points.</li>
+                        <li>Apply different strategies: slight edge for Running Shoes, value-based pricing for Tech, and premium positioning for brands like Nike/Adidas.</li>
+                    </ul>
+                </div>
+                
+                <!-- Long Term -->
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="font-bold text-xl text-[#20274d] mb-4 border-b pb-2">LONG TERM (6+ months): Market Leadership - £35,000+ monthly</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-[#84869a]">
+                        <li><span class="font-semibold text-green-600">Advanced CI:</span> Develop predictive pricing models based on competitor seasonal and promotional patterns.</li>
+                        <li>Optimize for market share vs. profit by category.</li>
+                        <li>Explore value-added revenue streams like product bundling and loyalty program integration.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Expected Financial Impact -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-semibold text-[#20274d]">Expected Financial Impact (Annualized)</h2>
+                <div class="bg-white rounded-xl p-6 space-y-4 shadow-md">
+                    <p class="text-sm text-[#84869a]">
+                        These conservative projections are based purely on recapturing margin from unnecessary discounts:
+                    </p>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-[#84869a]">
+                        <li><span class="font-semibold text-[#20274d]">Month 1-3:</span> <span class="font-semibold text-green-600">£180,000 Annualized</span> (£15,000 monthly) from quick wins.</li>
+                        <li><span class="font-semibold text-[#20274d]">Month 4-6:</span> <span class="font-semibold text-green-600">£300,000 Annualized</span> (£25,000 monthly) as strategic positioning matures.</li>
+                        <li><span class="font-semibold text-[#20274d]">Month 7+:</span> <span class="font-semibold text-green-600">£360,000+ Annualized</span> (£30,000+ monthly) from full optimization and growth.</li>
+                        <li class="font-bold text-base text-[#20274d] mt-2">Overall Annual Impact: <span class="text-green-600">£300,000+</span> additional revenue without requiring extra inventory or marketing spend.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- New Call to Action for Meeting -->
+            <div class="text-center pt-8 border-t border-[#d1d5db] mt-12 pt-12">
+                <h3 class="text-xl font-semibold text-[#20274d] mb-4">Ready to move from analysis to action?</h3>
+                <a href="https://meetings-eu1.hubspot.com/jonas-jensen" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105" target="_blank">
+                    Book a Strategy Session
+                </a>
+                <p class="mt-4 text-xs text-[#84869a]">
+                    Click the button above to schedule a call with Jonas to learn more
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Report Button -->
+    <button onclick="downloadReport()" class="fixed bottom-6 right-6 p-4 bg-[#20274d] text-white rounded-full shadow-lg transition-transform duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 focus:ring-offset-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+    </button>
+
+    <!-- JavaScript for "download" functionality -->
+    <script>
+        function downloadReport() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Running_Retail_Optimization_Report.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
